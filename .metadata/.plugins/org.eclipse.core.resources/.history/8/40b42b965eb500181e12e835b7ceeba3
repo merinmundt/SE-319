@@ -1,0 +1,96 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Server {
+ 
+	public static void main(String[] args) throws IOException {
+
+		ServerSocket serversocket = new ServerSocket(); 
+		int portNum = 4444;
+		
+		
+		try {
+			serversocket = new ServerSocket(portNum); 									
+			System.out.println("Server Started");
+		}
+			
+		catch (IOException e) {
+			System.out.println("Could not listen on port: 4444");
+			System.exit(-1);
+		}
+		
+		while(true){
+			Socket clientSocket = null;
+			
+			try{
+				System.out.println("Waiting for client");
+				clientSocket = serversocket.accept(); 
+			}
+			
+			catch (IOException e) {
+				System.out.println("Accept failed: 4444");
+					System.exit(-1);
+		
+			}
+
+		}
+	}	
+	
+
+}
+
+class ListClientHandler implements Runnable {
+	Socket s;
+	int num;
+	
+
+	ListClientHandler(Socket s, int n) {
+		this.s = s;
+		num = n;
+	}
+
+	
+	public void run() { 
+		Scanner in;
+		PrintWriter out;
+		Socket clientSocket = null;
+		Socket socket;
+		
+		try {
+			
+
+			in = new Scanner(new BufferedInputStream(socket.getInputStream())); 
+			out = new PrintWriter(new BufferedOutputStream(socket.getOutputStream()));
+			ListClientHandler cl = new ListClientHandler(clientSocket, num);
+			//cl.start();
+			System.out.println("Waiting for client ");
+			System.out.println(">Enter your name: ");
+			out.flush();
+			//socket = serversocket.accept();
+			
+			
+			String name = in.nextLine();
+			in.close(); 
+			
+			
+
+			
+			System.out.println("Server got connected to a client");
+			Thread t = new Thread(new ListClientHandler(clientSocket, num));
+			t.start();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	} 
+	
+
+
+} // end of class ClientHandler
+

@@ -1,0 +1,100 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+public class client {
+
+	Socket serverSocket;
+	String Host = "localhost";
+	int Port = 4444;
+	ServerListener sl;
+	String name;
+
+
+	client() {
+		// 1. CONNECT TO THE SERVER
+		try {
+			serverSocket = new Socket(Host, Port);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		public static void main(String[] args) {
+			client lc = new client();
+			
+		}
+	
+
+		sl = new ServerListener(this, serverSocket);
+		new Thread((Runnable) sl).start();
+
+		PrintWriter out;
+		try{
+			Scanner in; 
+			in = new Scanner(new BufferedInputStream(s.getInputStream()));
+			String text = in.nextLine();
+			System.out.println(text);
+			
+		}
+		
+
+}
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+
+
+} // end of ListClient
+
+class ServerListener extends client {
+	client c;
+	Scanner in; // this is used to read which is a blocking call
+
+	
+	ServerListener(client c, Socket s) {
+		try {
+			this.c = c;
+			in = new Scanner(new BufferedInputStream(s.getInputStream()));
+			System.out.println("Enter your name:");
+			name = in.next();
+			System.out.println(name);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		while (true) { // run forever
+			String message = in.nextLine();
+			System.out.println(message);
+			
+		}
+
+	}
+}
+public class Reader extends Thread(){
+	
+	while(true){
+		
+	}
+}
+
+public class Writer extends Thread(){
+	
+	while(true){
+		
+	}
+}
