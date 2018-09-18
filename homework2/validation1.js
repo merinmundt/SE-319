@@ -4,6 +4,7 @@ function alphanumeric(inputtext){
     if(inputtext.value.match(letternumber)){
         bool = true;
     }
+    return bool;
 }
 function dropdown(){}
 {
@@ -14,5 +15,19 @@ function dropdown(){}
     if(strUser==0)
     {
         alert("Please select a user");
+    }
+}
+function validate(){
+    if(first name){
+        alphanumeric(firstname);
+    }
+    if(last name){
+        alphanumeric(lastname);
+    }
+    if(gender){
+        dropdown();
+    }
+    if(state){
+        dropdown();
     }
 }
