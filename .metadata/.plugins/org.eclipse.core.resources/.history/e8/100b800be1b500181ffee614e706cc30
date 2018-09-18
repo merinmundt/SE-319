@@ -1,0 +1,101 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Server {
+ 
+	private static ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws IOException {
+
+		ServerSocket serversocket = null; 
+		int portNum = 4444;
+		
+		
+		try {
+			serversocket = new ServerSocket(portNum); 									
+			System.out.println("Server Started");
+		}
+			
+		catch (IOException e) {
+			System.out.println("Could not listen on port: 4444");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		
+		while(true){
+			//Socket clientSocket = null;
+			
+			try{
+				System.out.println("Waiting for client");
+				Socket clientSocket = serversocket.accept(); 
+				ListClientHandler cs = new ListClientHandler(clientSocket);
+				cs.start();
+			}
+			
+			catch (IOException e) {
+				System.out.println("Accept failed: 4444");
+					System.exit(-1);
+		
+			}
+
+		}
+	}	
+	
+
+}
+
+class ListClientHandler extends Thread {
+	Socket s;
+	
+
+	ListClientHandler(Socket s) {
+		this.s = s;
+
+	}
+
+	
+	public void run() { 
+		Scanner in;
+		PrintWriter out;
+		Socket clientSocket = null;
+		Socket socket = null;
+		String name = null;
+		
+		try {
+			
+
+			in = new Scanner(new BufferedInputStream(socket.getInputStream())); 
+			out = new PrintWriter(new BufferedOutputStream(socket.getOutputStream()));
+			ListClientHandler cl = new ListClientHandler(clientSocket);
+			//cl.start();
+			System.out.println("Waiting for client ");
+			System.out.println(">Enter your name: ");
+			out.flush();
+			//socket = serversocket.accept();
+			System.out.println("Server got connected to a client");
+			
+			name = in.nextLine();
+			in.close();
+			
+			System.out.println(name + "has been connected to chat room.");
+			
+			Thread t = new Thread(new ListClientHandler(clientSocket, num));
+			t.start();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	} 
+	
+
+
+} // end of class ClientHandler
+

@@ -1,0 +1,118 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+
+public class Server {
+ 
+	private static ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) throws IOException {
+
+		ServerSocket serversocket = null; 
+		int portNum = 4444;
+		
+		
+		try {
+			serversocket = new ServerSocket(portNum); 									
+			System.out.println("Server Started");
+		}
+			
+		catch (IOException e) {
+			System.out.println("Could not listen on port: 4444");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		
+		while(true){
+			//Socket clientSocket = null;
+			
+			try{
+				System.out.println("Waiting for client");
+				Socket clientSocket = serversocket.accept(); 
+				ListClientHandler cs = new ListClientHandler(clientSocket);
+				cs.start();
+			}
+			
+			catch (IOException e) {
+				System.out.println("Accept failed: 4444");
+					System.exit(-1);
+		
+			}
+
+		}
+	}	
+	
+
+
+
+private static class ListClientHandler extends Thread {
+	Socket s;
+	
+
+	ListClientHandler(Socket s) {
+		this.s = s;
+
+	}
+
+	@Override
+	public void run() { 
+		PrintWriter out = null;
+		String name = null;
+		
+		try {
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			out = new PrintWriter(s.getOutputStream(), true);
+			out.print(">Enter Your Name: ");
+			
+			while(true){
+				name = in.readLine();
+				break;
+			}
+
+			out.print("Server got connected to a client");
+			out.print(name + "has been connected to chat room.");
+			
+			writers.add(out);
+			
+			while(true){
+				String text = in.readLine();
+				if(text == null){
+					return;
+				}
+				
+				for(PrintWriter w : writers){
+					if(w != out){
+						w.println(name + ": " + text);
+					}
+					
+				}
+				System.out.println(name + ": " + text);
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			writers.remove(out);
+			try{
+				s.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	} 
+	}
+	
+}
+

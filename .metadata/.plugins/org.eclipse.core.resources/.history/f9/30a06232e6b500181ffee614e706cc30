@@ -1,0 +1,140 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+public class client {
+
+	static Socket serverSocket;
+	String Host = "localhost";
+	int Port = 4444;
+	//ServerListener sl;
+
+	public static void main(String[] args) throws IOException {
+		client lc = new client();
+		Reader r = new Reader(lc);
+		r.start();
+		Writer w = new Writer(lc);
+		w.start();
+	}
+	
+	
+	public client() throws IOException {
+		// 1. CONNECT TO THE SERVER
+		try {
+			serverSocket = new Socket(Host, Port);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			}
+		
+		private static class Reader extends Thread(){
+			client read;
+			
+			public Reader(client cl){
+				read = cl;
+			}
+			public void run() {
+				try{
+					BufferedReader in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					
+					while(true){
+						String intext = in.readLine();
+						System.out.println(intext);
+					}
+					
+					catch (IOException e) {
+						e.printStackTrace();
+						}
+				}
+				
+			}
+			
+			private static class Writer extends Thread(){
+				
+				PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+				BufferedReader message = new BufferedReader(new InputStreamReader(System.in));
+				
+				while(true){
+					String chat = message.readLine();
+					if(chat == null){
+						return;
+					}
+					
+				}
+			}
+			
+		
+
+		//sl = new ServerListener(this, serverSocket);
+		//new Thread(sl).start();
+
+		PrintWriter out;
+		try{
+			
+			Scanner in;
+			out = new PrintWriter(new BufferedOutputStream(serverSocket.getOutputStream()));
+			out.println("client's text:");
+			in = new Scanner(new BufferedInputStream(serverSocket.getInputStream()));
+			String text = in.nextLine();
+			System.out.println(text);
+			
+		}
+		
+		finally{
+			
+		}
+			
+		
+}
+		
+
+
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+
+
+} // end of ListClient
+
+/**class ServerListener extends client implements Runnable {
+	client c;
+	Scanner in; // this is used to read which is a blocking call
+
+	
+	ServerListener(client c, Socket s) throws IOException {
+		try {
+			this.c = c;
+			in = new Scanner(new BufferedInputStream(s.getInputStream()));
+			String message = in.nextLine();
+			System.out.println(message);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void run() {
+		while (true) { // run forever
+			String message = in.nextLine();
+			System.out.println(message);
+			
+		}
+
+	}
+}**/
+

@@ -1,107 +1,96 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 
-public class client {
+import java.net.*;
+import java.io.*;
 
-	Socket serverSocket;
+public class Client {
+
+	static Socket serverSocket;
 	String Host = "localhost";
 	int Port = 4444;
-	ServerListener sl;
-	String name;
 
-
-	@SuppressWarnings("resource")
-	client() throws IOException {
-		// 1. CONNECT TO THE SERVER
-		try {
-			serverSocket = new Socket(Host, Port);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+	//creates a new client, reader and writer for each chatroom
+	public static void main(String[] args) throws Exception {
+		Client lc = new Client();
+		Reader r = new Reader(lc);
+		Writer w = new Writer(lc);
+		r.start();
+		w.start();
+	}
+	
+	
+	public Client() throws UnknownHostException, IOException {
+	
+		serverSocket = new Socket(Host, Port);
+	} 
+		
+		//Asks user for their name, then loops through looking to read in other
+		//clients text messages that should appear on their boards. 
+		private static class Reader extends Thread{
+			Client read;
+			
+			public Reader(Client cl){
+				read = cl;
 			}
-		
-
-		sl = new ServerListener(this, serverSocket);
-		new Thread(sl).start();
-
-		PrintWriter out;
-		try{
+			public void run() {
+				try{
+					BufferedReader in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					System.out.println(">Enter Your Name: ");
+					
+					while(true){
+						String intext = in.readLine();
+						System.out.println(intext);
+						System.out.println("Text: ");
+						
+					}
+				}
+					
+					catch (IOException e) {
+						e.printStackTrace();
+						}
+				
+				
+			}
+		}		
+			//reads in the line written using a buffered reader
+		 	//and loops through to print the necessary lines
+			private static class Writer extends Thread{
+				
+				Client write;
+				
+				public Writer(Client cl){
+					write = cl;
+				}
+				public void run(){
+					
+				try{
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					BufferedReader message = new BufferedReader(new InputStreamReader(System.in));
+				
+					while(true){
+						String chat = message.readLine();
+						if(chat == null){
+							return;
+						}
+						out.println(chat);
+					}
+				}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
 			
-			Scanner in;
-			out = new PrintWriter(new BufferedOutputStream(serverSocket.getOutputStream()));
-			out.println("client's text:");
-			in = new Scanner(new BufferedInputStream(serverSocket.getInputStream()));
-			String text = in.nextLine();
-			System.out.println(text);
 			
+			}
 		}
-		
-		finally{
 			
-		}
-			
-		/**public static void main(String[] args) throws IOException {
-			client lc = new client();	
-		}**/
-}
 		
 
-
-
-	public void run() {
-		// TODO Auto-generated method stub
+		
+			
+		
 		
 	}
-
 	
 
 
 
-} // end of ListClient
-
-class ServerListener extends client implements Runnable {
-	client c;
-	Scanner in; // this is used to read which is a blocking call
-
-	
-	ServerListener(client c, Socket s) throws IOException {
-		try {
-			this.c = c;
-			in = new Scanner(new BufferedInputStream(s.getInputStream()));
-			String message = in.nextLine();
-			System.out.println(message);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void run() {
-		while (true) { // run forever
-			String message = in.nextLine();
-			System.out.println(message);
-			
-		}
-
-	}
-}
-/**public class Reader extends Thread(){
-	
-	while(true){
-		
-	}
-}
-
-public class Writer extends Thread(){
-	
-	while(true){
-		
-	}
-}**/

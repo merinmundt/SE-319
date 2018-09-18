@@ -1,0 +1,15 @@
+1) In order to compile, open up my 2 programs (Server.Java and Client.Java) through eclipse on my Homework1.zip
+
+2) Then, once those are opened, first fun Server.Java as a Java Application. Once that is running and you read "Server Started" 
+and "Waiting for Client" in the server prompt. You can now run the Client.Java program as a Java Application.
+
+3)Once these are both running, In the client console, you should see ">Enter your name:" enter your name, and press enter TWO 
+TIMES. Once this is done, you should see that you are connected with the server and your name should be on the Server console. 
+
+4)The client can now see that they are prompted to type a text, and will not be prompted again until another person has 
+joined the chat. If another person enters the chat room, via running Client.java again, they will go through step three for
+themselves, and their messages will be showed on the server's console, and the other client's console with their names next 
+to their written message. 
+
+5) Anyone can talk at anytime. Will get prompted with "Text:" everytime someone replys or send a message. You will not be 
+prompted if you were the last person to send a text message.  

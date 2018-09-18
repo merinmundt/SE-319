@@ -1,0 +1,102 @@
+import java.io.BufferedInputStream;
+//import java.io.Reader;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+//import java.io.Writer;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+import java.net.*;
+import java.io.*;
+
+public class client {
+
+	static Socket serverSocket;
+	String Host = "localhost";
+	int Port = 4444;
+
+	public static void main(String[] args) throws IOException {
+		client lc = new client();
+		Reader r = new Reader(lc);
+		r.start();
+		Writer w = new Writer(lc);
+		w.start();
+	}
+	
+	
+	public client() throws IOException {
+		// 1. CONNECT TO THE SERVER
+		try {
+			serverSocket = new Socket(Host, Port);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			}
+		
+		private static class Reader extends Thread(){
+			client read;
+			
+			public Reader(client cl){
+				read = cl;
+			}
+			public void run() {
+				try{
+					BufferedReader in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					
+					while(true){
+						String intext = in.readLine();
+						System.out.println(intext);
+					}
+					
+					catch (IOException e) {
+						e.printStackTrace();
+						}
+				}
+				
+			}
+			
+			private static class Writer extends Thread(){
+				
+				client write;
+				
+				public Writer(client cl){
+					write = cl;
+				}
+				public void run(){
+					
+				try{
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					BufferedReader message = new BufferedReader(new InputStreamReader(System.in));
+				
+					while(true){
+						String chat = message.readLine();
+						if(chat == null){
+							return;
+						}
+						out.println(chat);
+					}
+				}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+			
+			
+			}
+		}
+			
+		
+
+		
+			
+		
+		
+	}
+	
+}
+
+

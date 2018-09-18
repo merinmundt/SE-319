@@ -1,0 +1,89 @@
+
+import java.net.*;
+import java.io.*;
+
+public class Client {
+
+	static Socket serverSocket;
+	String Host = "localhost";
+	int Port = 4444;
+
+	public static void main(String[] args) throws Exception {
+		Client lc = new Client();
+		Reader r = new Reader(lc);
+		Writer w = new Writer(lc);
+		r.start();
+		w.start();
+	}
+	
+	
+	public Client() throws UnknownHostException, IOException {
+	
+		serverSocket = new Socket(Host, Port);
+	} 
+		
+		
+		private static class Reader extends Thread{
+			Client read;
+			
+			public Reader(Client cl){
+				read = cl;
+			}
+			public void run() {
+				try{
+					BufferedReader in = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					
+					while(true){
+						String intext = in.readLine();
+						System.out.println(intext);
+					}
+				}
+					
+					catch (IOException e) {
+						e.printStackTrace();
+						}
+				
+				
+			}
+		}		
+			private static class Writer extends Thread{
+				
+				Client write;
+				
+				public Writer(Client cl){
+					write = cl;
+				}
+				public void run(){
+					
+				try{
+					PrintWriter out = new PrintWriter(serverSocket.getOutputStream(), true);
+					BufferedReader message = new BufferedReader(new InputStreamReader(System.in));
+				
+					while(true){
+						String chat = message.readLine();
+						if(chat == null){
+							return;
+						}
+						out.println(chat);
+					}
+				}
+					catch (IOException e) {
+						e.printStackTrace();
+					}
+			
+			
+			}
+		}
+			
+		
+
+		
+			
+		
+		
+	}
+	
+
+
+
