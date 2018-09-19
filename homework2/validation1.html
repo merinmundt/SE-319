@@ -8,21 +8,29 @@
         <h1> Validation Form</h1>
         <form>
             First Name: <br>
-            <input type ="text" name = "firstname"><br>
+            <input type ="text" id = firstname name = "firstname">
+            <img id="Ximage" src="wrong.png">
+            <img id="checkImage" src="correct.png"><br>
+        </form>
+        <form>
             Last Name: <br>
-            <input type ="text" name = "lastname">
+            <input type ="text" id = lastname name = "lastname">
+            <img id="Ximage" src="wrong.png">
+            <img id="checkImage" src="correct.png">
         </form>
         <div>
             <label> Gender </label>
-            <select>
+            <select id = gender>
                 <option>None</option>
                 <option>Male</option>
                 <option>Female</option>
             </select>
+            <img id="Ximage" src="wrong.png">
+            <img id="checkImage" src="correct.png">
         </div>
         <div>
             <label> State </label>
-            <select>
+            <select id = state>
                 <option>Arizona</option>
                 <option>California</option>
                 <option>Colorado</option>
@@ -34,9 +42,11 @@
                 <option>Virginia</option>
                 <option>Washington</option>
             </select>
+            <img id="Ximage" src="wrong.png">
+            <img id="checkImage" src="correct.png">
         </div>
         <br><br>
-        <input type = "submit" value = "Continue" onclick="">
-        <script type = "text/javascript" src= "validation.js"/>
+        <input type = "submit" value = "Continue" onclick="Validate()">
+        <script type = "text/javascript" src= "validation1.js"/>
     </body>
 </html>
