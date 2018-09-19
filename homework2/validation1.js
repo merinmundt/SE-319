@@ -67,17 +67,21 @@ function unhideCheck(id){
     
 }
 
+function allGood(){
+
+}
 function validate(){
     var firstname = document.getElementById("firstname");
-        alphanumericf(firstname.value);
+        alphanumericf(firstname);
     
     var lastname = document.getElementById("lastname");
-        alphanumericl(lastname.value);
+        alphanumericl(lastname);
     
     var gender = document.getElementById("gender");
         dropdowng(gender.value);
     
     var state = document.getElementById("state");
         dropdowns(state.value);
-    
+
+    window.location = validation2.html;
 }
