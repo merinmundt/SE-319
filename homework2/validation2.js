@@ -1,5 +1,6 @@
+/** 
 function checkEmail(email){
-    var pattern = /^[a-zA-Z0-9]{3}+@[a-zA-Z0-9]{3}+\.[a-z]{3}$/;
+    var pattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]{3}$/;
     if(pattern.test(email)){
         unhide("checkImagee");
     }
@@ -8,7 +9,7 @@ function checkEmail(email){
     }
     return pattern.test(email);
 }
-
+*/ 
 function checkNum(inputtext){
     var isValid = false;
     var Number = /^\(?([0-9]{3})\)?[-]?([0-9]{3})[-]?([0-9]{4})$/;
@@ -23,7 +24,7 @@ function checkNum(inputtext){
     }
     return isValid;
 }
-
+/**
 function checkAddress(inputtext){
     var isValid = false;
     var order = /^[A-Za-z ]+(?:,?\s+)[A-Za-z]{2,}$/;
@@ -38,20 +39,21 @@ function checkAddress(inputtext){
     }
     return isValid;
 }
-
+*/
 function unhideX(id) {
-    var img = Document.getElementById(id);
+    var img = document.getElementById(id);
     img.style.visibility = 'visible';
 }
 
 function Validate(){
-    var email = document.getElementById("email");
-        checkEmail(email.value);
+    //var email = document.getElementById("email");
+      //  checkEmail(email.value);
     
-    var number = document.getElementById("num");
-        checkNum(number.value);
-    
+     var number = document.getElementById("num");
+        checkNum(number);
+    /** 
     var address = document.getElementById("add");
         checkAddress(address.value);
+        */
     
 }
