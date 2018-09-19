@@ -5,10 +5,10 @@ function alphanumericf(inputtext){
         isValid = true;
     }
     if(isValid){
-        unhideCheck(checkImagef);
+        unhide("checkImagef");
     }
     else{
-        unhideX(Ximagef);
+        unhide("Ximagef");
     }
     return isValid;
 }
@@ -20,10 +20,10 @@ function alphanumericl(inputtext){
         isValid = true;
     }
     if(isValid){
-        unhideCheck(checkImagel);
+        unhide("checkImagel");
     }
     else{
-        unhideX(Ximagel);
+        unhide("Ximagel");
     }
     return isValid;
 }
@@ -35,10 +35,10 @@ function dropdowng(inputtext){}
     var strUser1 = inputtext.options[inputtext.selectedIndex].text;
     if(strUser==0)
     {
-        unhideX(Ximageg);
+        unhide("Ximageg");
     }
     else{
-        unhideCheck(checkImageg);
+        unhide("checkImageg");
     }
 }
 
@@ -49,22 +49,16 @@ function dropdowns(inputtext){}
     var strUser1 = inputtext.options[inputtext.selectedIndex].text;
     if(strUser==0)
     {
-            unhideX(Ximages);
+            unhide("Ximages");
     }
     else{
-        unhideCheck(checkImages);
+        unhide("checkImages");
     }
 }
 
-function unhideX(id) {
+function unhide(id) {
     var img = Document.getElementById(id);
     img.style.visibility = 'visible';
-}
-
-function unhideCheck(id){
-    var img = Document.getElementById(id);
-    img.style.visibility = 'visible';
-    
 }
 
 function allGood(){
