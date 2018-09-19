@@ -12,7 +12,7 @@ function alphanumericf(inputtext){
     }
     return isValid;
 }
-
+/** 
 function alphanumericl(inputtext){
     var isValid = false;
     var letternumber = /^[0-9a-zA-Z]+$/;
@@ -28,12 +28,10 @@ function alphanumericl(inputtext){
     return isValid;
 }
 
-function dropdowng(inputtext){}
+function dropdowng(inputtext)
 {
-    var strUser = inputtext.options[inputtext.selectedIndex].value;
-
-    var strUser1 = inputtext.options[inputtext.selectedIndex].text;
-    if(strUser==0)
+    var isSelected = inputtext.selectedIndex > -1;
+    if(!isSelected)
     {
         unhide("Ximageg");
     }
@@ -42,40 +40,34 @@ function dropdowng(inputtext){}
     }
 }
 
-function dropdowns(inputtext){}
+function dropdowns(inputtext)
 {
-    var strUser = inputtext.options[inputtext.selectedIndex].value;
-
-    var strUser1 = inputtext.options[inputtext.selectedIndex].text;
-    if(strUser==0)
+    var isSelected = inputtext.selectedIndex > -1;
+    if(!isSelected)
     {
             unhide("Ximages");
     }
     else{
         unhide("checkImages");
     }
-}
+}*/
 
 function unhide(id) {
-    var img = Document.getElementById(id);
+    var img = document.getElementById(id);
     img.style.visibility = 'visible';
 }
 
-function allGood(){
-
-}
 function validate(){
     var firstname = document.getElementById("firstname");
         alphanumericf(firstname);
     
-    var lastname = document.getElementById("lastname");
+    /**var lastname = document.getElementById("lastname");
         alphanumericl(lastname);
     
     var gender = document.getElementById("gender");
-        dropdowng(gender.value);
+        dropdowng(gender);
     
     var state = document.getElementById("state");
-        dropdowns(state.value);
+        dropdowns(state);**/
 
-    window.location = validation2.html;
 }
