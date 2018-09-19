@@ -5,10 +5,10 @@ function alphanumericf(inputtext){
         isValid = true;
     }
     if(isValid){
-        unhideCheck();
+        unhideCheck(checkImagef);
     }
     else{
-        unhideX();
+        unhideX(Ximagef);
     }
     return isValid;
 }
@@ -20,10 +20,10 @@ function alphanumericl(inputtext){
         isValid = true;
     }
     if(isValid){
-        unhideCheck();
+        unhideCheck(checkImagel);
     }
     else{
-        unhideX();
+        unhideX(Ximagel);
     }
     return isValid;
 }
@@ -35,10 +35,10 @@ function dropdowng(inputtext){}
     var strUser1 = inputtext.options[inputtext.selectedIndex].text;
     if(strUser==0)
     {
-        unhideX();
+        unhideX(Ximageg);
     }
     else{
-        unhideCheck();
+        unhideCheck(checkImageg);
     }
 }
 
@@ -49,20 +49,20 @@ function dropdowns(inputtext){}
     var strUser1 = inputtext.options[inputtext.selectedIndex].text;
     if(strUser==0)
     {
-            unhideX();
+            unhideX(Ximages);
     }
     else{
-        unhideCheck();
+        unhideCheck(checkImages);
     }
 }
 
-function unhideX() {
-    var img = Document.getElementById("Ximage");
+function unhideX(id) {
+    var img = Document.getElementById(id);
     img.style.visibility = 'visible';
 }
 
-function unhideCheck(){
-    var img = Document.getElementById("Checkimage");
+function unhideCheck(id){
+    var img = Document.getElementById(id);
     img.style.visibility = 'visible';
     
 }

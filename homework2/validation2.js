@@ -1,10 +1,10 @@
 function checkEmail(email){
     var pattern = /^[a-zA-Z0-9]{3}+@[a-zA-Z0-9]{3}+\.[a-z]{3}$/;
     if(pattern.test(email)){
-        unhideCheck();
+        unhideCheck(checkImagee);
     }
     else{
-        unhideX();
+        unhideX(Ximagee);
     }
     return pattern.test(email);
 }
@@ -16,10 +16,10 @@ function checkNum(inputtext){
         isValid = true;
     }
     if(isValid){
-        unhideCheck();
+        unhideCheck(checkImagen);
     }
     else{
-        unhideX();
+        unhideX(Ximagen);
     }
     return isValid;
 }
@@ -31,12 +31,22 @@ function checkAddress(inputtext){
         isValid = true;
     }
     if(isValid){
-        unhideCheck();
+        unhideCheck(checkImagea);
     }
     else{
-        unhideX();
+        unhideX(Ximagea);
     }
     return isValid;
+}
+
+function unhideX(id) {
+    var img = Document.getElementById(id);
+    img.style.visibility = 'visible';
+}
+
+function unhideCheck(id){
+    var img = Document.getElementById(id);
+    img.style.visibility = 'visible';
 }
 
 function Validate(){
