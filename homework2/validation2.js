@@ -30,7 +30,7 @@ function checkNum(inputtext){
 
 function checkAddress(inputtext){
     var isValid = false;
-    var order = /^[A-Za-z ]+(?:,?\s+)[A-Za-z]{2}$/;
+    var order = /^[A-Za-z ]+(?:(?:,|\s)\s*)[A-Za-z]{2,}$/;
     if(inputtext.match(order)){
         isValid = true;
     }
