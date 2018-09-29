@@ -1,22 +1,22 @@
-//listen to the keys being pressed
-//determine which key is being pressed
+
 var memory;
 var Memory = 0;
 
 
 var operator = null;
 var oldOp = null;
-var pushbutton = null;
 var oldbutton;
+var button1;
 
 function handleButton(button){
-    
+    var button1 = null;
     var action = button.dataset.action;
     var answer = document.getElementById("ans");
 
     switch(action){
         case "number":
             handleNumber(button.value);
+            highlight(button);
             break;
 
         case "add":
@@ -123,6 +123,9 @@ function calculate(){
     memory = ans;
     oldbutton.className = "";
     oldbutton = null;
+    button1.className = "";
+    button1 = null;
+
 }
 
 function changeColor(button){
@@ -132,5 +135,13 @@ function changeColor(button){
         
         button.className = "redbutton";
         oldbutton = button;
+}
+
+function highlight(button){
+    if(button1){
+        button1.className = "";
+    }    
+    button.className = "highlight";
+    button1 = button;
 }
 
