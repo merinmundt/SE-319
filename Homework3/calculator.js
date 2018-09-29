@@ -1,40 +1,76 @@
 //listen to the keys being pressed
 //determine which key is being pressed
 var memory;
-var oldmemory;
-var operator;
-var button;
+var Memory = 0;
+
+
+var operator = null;
+var oldOp = null;
+var pushbutton = null;
 var oldbutton;
 
 function handleButton(button){
     
     var action = button.dataset.action;
+    var answer = document.getElementById("ans");
 
     switch(action){
         case "number":
             handleNumber(button.value);
+            break;
 
         case "add":
-
-            operator = "add"; 
+            operator = "add";
+            changeColor(button);
             break;
 
         case "subtract":
-            operator = "add";
+            operator = "sub";
+            changeColor(button);
+            break;
 
         case "multiply":
-            operator = "add";
+            operator = "mul";
+            changeColor(button);
+
+            break;
 
         case "divide":
-            operator = "add";
+            operator = "div";
+            changeColor(button);
+            break;
+
+        case "calculate":
+            operator = "equals"
+            calculate();
+            break;
+
+        case "negate":
+            if(isNaN(answer.value)){
+                return;
+            }
+            answer.value = -Number(answer.value);
+            break;
 
         case "clear":
-        
+            answer.value = "";
+            break;
+
         case "memorysub":
+            Memory = Memory - Number(answer.value);
+            break;
 
         case "memoryadd":
+            Memory = Memory + Number(answer.value);
+            break;
 
         case "memoryclear":
+            Memory = 0;
+            break;
+
+        case "memory":
+            answer.value = Memory;
+            break;
 
     }
 
@@ -42,8 +78,59 @@ function handleButton(button){
 }
 
 function handleNumber(number){
-        var answer = document.getElementById("ans");
-        answer.value = answer.value + number;
+    var answer = document.getElementById("ans");
 
+    if(operator != null){
+        memory = answer.value;
+        answer.value = number;
+        oldOp = operator;
+        operator = null;
+    }
+    else if(operator == null){
+        answer.value = answer.value + number;
+    }
+
+
+}
+
+function calculate(){
+    var answer = document.getElementById("ans");
+    var ans;
+    switch(oldOp){
+        case "add":
+            ans = Number(answer.value) + Number(memory);
+            break;
+
+        case "sub":
+            ans = Number(memory) - Number(answer.value);
+            break;
+        
+        case "div":
+            ans = Number(memory) / Number(answer.value);
+            break;
+
+        case "mul":
+            ans = Number(memory) * Number(answer.value);
+            break;
+
+        case null:
+            return;
+            
+
+    }
+
+    answer.value = ans;
+    memory = ans;
+    oldbutton.className = "";
+    oldbutton = null;
+}
+
+function changeColor(button){
+        if(oldbutton){
+            oldbutton.className = "";
+        }
+        
+        button.className = "redbutton";
+        oldbutton = button;
 }
 
