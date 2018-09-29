@@ -1,45 +1,46 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="calculator.css">
+        <script type="text/javascript" src="calculator.js"></script>
     </head>
 
     <body>
         <table id = "calc" style ="width:300px">
             <tr>
-                <br><input type="textfield" name="ans" value=""></br>
+                <br><input type="textfield" id="ans" name="ans" value=""></br>
             </tr>
             <tr>
-                <td> <button type="button">7</button></td>
-                <td> <button type="button">8</button></td>
-                <td> <button type="button">9</button></td>
-                <td> <button type="button">+</button></td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="7">7</button></td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="8">8</button></td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="9">9</button></td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="add">+</button></td>
             </tr>
             <tr>
-                <td> <button type="button">4</button> </td>
-                <td> <button type="button">5</button> </td>
-                <td> <button type="button">6</button> </td>
-                <td> <button type="button">-</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="4">4</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="5">5</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="6">6</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="subtract">-</button> </td>
             </tr>
             <tr>
-                <td> <button type="button">1</button> </td>
-                <td> <button type="button">2</button> </td>
-                <td> <button type="button">3</button> </td>
-                <td> <button type="button">*</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="1">1</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="2">2</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="3">3</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="multiply">*</button> </td>
             </tr>
             <tr>
-                <td> <button type="button">0</button> </td>
-                <td> <button type="button">.</button> </td>
-                <td> <button type="button">=</button> </td>
-                <td> <button type="button">/</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number" value="0">0</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="number">.</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="calculate">=</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="divide">/</button> </td>
             </tr>
             <tr>
-                <td> <button type="button">C</button> </td>
-                <td> <button type="button">MR</button> </td>
-                <td> <button type="button">M-</button> </td>
-                <td> <button type="button">M+</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="clear">C</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="memory">MR</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="memorysub">M-</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="memoryadd">M+</button> </td>
             </tr>
             <tr>
-                <td> <button type="button">MC</button> </td>
+                <td> <button type="button" onclick="handleButton(this)" data-action="memoryclear">MC</button> </td>
             </tr>
         </table>
     </body>
