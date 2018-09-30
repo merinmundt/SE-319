@@ -1,25 +1,25 @@
 <html>
+
     <head>
-            <script type="text/javascript" src="snake.js"></script>
-
+        
     </head>
-
-    <body> 
+    <body>
         <div>
-            <button type="button" onclick="startStop()" id = "startStop">Start</button>
+            <button type="button" onclick="startStop()" id="startStop">Start</button>
             <button type="button" onclick="turnLeft()">Turn left</button>
             <button type="button" onclick="turnRight()">Turn Right</button>
         </div>
         <div>
             <canvas id="snake" width="600" height="600" style="border:1px solid black"></canvas>
         </div>
-
         <script>
             var i = 100;
             var timer = setInterval(function(){
                 document.getElementById("snake").innerHTML = i--;
             }, 1000)
         </script>
+
+        <script type="text/javascript" src="snake.js"></script>
     </body>
 
 </html>
