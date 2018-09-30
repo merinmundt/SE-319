@@ -50,26 +50,32 @@ function handleButton(button){
                 return;
             }
             answer.value = -Number(answer.value);
+            changeColor(button);
             break;
 
         case "clear":
             answer.value = "";
+            changeColor(button);
             break;
 
         case "memorysub":
             Memory = Memory - Number(answer.value);
+            changeColor(button);
             break;
 
         case "memoryadd":
             Memory = Memory + Number(answer.value);
+            changeColor(button);
             break;
 
         case "memoryclear":
             Memory = 0;
+            changeColor(button);
             break;
 
         case "memory":
             answer.value = Memory;
+            changeColor(button);
             break;
 
     }

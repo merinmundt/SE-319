@@ -1,0 +1,33 @@
+Calculator:
+
+I have three files for Task 1: calculator.html, calculator.js, and calculator.css. 
+I used the css file to help me out and manage my borders and highlighting purposes. 
+
+In order to compile my calculator project, you open the calculator.html page in a browser 
+and select your first operand. If you want a negative number, you can press the (+/-) 
+button after you press your operand. 
+
+The operand you chose will highlight, and will continur to highligh until you press another
+operand. The operator you choose will become red when you press it. 
+
+Memory is set to 0 to begin with, and will not be set until you set it by pressing the M+ or
+M- button. 
+
+The order is Operand operator operand = " ". The answer recieved can be used as the first 
+operand if you press an operator after the equals button.
+
+Snake:
+
+I have two files for Task 2: snake.html, and snake.js. 
+
+In order to compile my snake project, you open the skake.html file in a browser and press the
+start button. Once you press the start button, you will see your small black snake starting in
+the middle of the left side of the box. it slowly moves, and will stop when it hits a side.
+To restart it from that spot, just press start.
+
+When restarting the line after it has gone out of bounds, you must turn the line around by 
+pressing turn left or turn right twice after starting it. The function will continue to turn 
+until you have turn the function around. 
+
+The line will over lap other lines. Pressing turn left and turn right buttons follow their 
+titles accordingly.   
