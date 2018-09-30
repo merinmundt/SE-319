@@ -24,13 +24,17 @@ function startStop(){
 function turnLeft(){
     switch(direction){
         case "right":
-
+            direction = "up";
+            break;
         case "left":
-
+            direction = "down";
+            break;
         case "up":
-
+            direction = "left";
+            break;
         case "down":
-
+            direction = "right";
+            break;
     }
 }
 
@@ -38,20 +42,39 @@ function turnLeft(){
 function turnRight(){
     switch(direction){
         case "right":
-
+            direction = "down";
+            break;
         case "left":
-
+            direction = "up";
         case "up":
-
+            direction = "right";
+            break;
         case "down":
-    
+            direction = "left";
+            break;
     }
 }
 
 function draw(){
-    ctx.beginPath();
-    ctx.moveTo(posX,posY);
-    posX = posX + 50;
-    ctx.lineTo(posX,posY);
+    switch(direction){
+        case "right":
+            posX += 5;
+            if(posX > 600) startStop();
+            break;
+        case "left":
+            posY -= 5;
+            if(posY < 0) startStop();
+            break;
+        case "up":
+            posY -= 5;
+            if(posY < 0) startStop();
+            break;
+        case "down":
+            posX += 5;
+            if(posX > 600) startStop();
+            break;
+    }
+
+    ctx.lineTo(posX, posY);
     ctx.stroke();
 }
