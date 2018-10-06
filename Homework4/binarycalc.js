@@ -22,7 +22,7 @@ main();
 function main(){
     var fNum1 = rs.question('1st Number: ');
     var action = rs.question('Enter the action{+,-,*,/,%}');
-    if(action == ("<<" || ">>")){
+    if(action == "<<" || action == ">>" || action == "~"){
         toOp2(action, fNum1);
         return;
     }
@@ -71,6 +71,8 @@ function toOp2(operator, number){
         case ">>":
             result = ConvertBase.bin2dec(number) >> 1;
             break;
+        case  "~":
+            result 
     }
     console.log(result.toString(2));
     
