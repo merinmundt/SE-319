@@ -14,3 +14,6 @@ the second number.
 After each question, press enter. Your operation will print out the 
 answer in binary form in the terminal. 
 
+There is a folder within my Homework4 folder that is labeled 
+Node_modules. This holds the readline_sync properties in order for 
+it to work. 
