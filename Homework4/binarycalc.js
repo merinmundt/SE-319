@@ -22,8 +22,9 @@ main();
 function main(){
     var fNum1 = rs.question('1st Number: ');
     var action = rs.question('Enter the action{+,-,*,/,%}');
-    if(action == ("<<" || ">>" || "&" || "~" || "|")){
+    if(action == ("<<" || ">>")){
         toOp2(action, fNum1);
+        return;
     }
     var fNum2 = rs.question('2nd Number: ');
     
@@ -62,12 +63,15 @@ function toOp(operator, number1, number2){
 
 function toOp2(operator, number){
     var result;
-    //var num = parseInt(number, 2);
+    var num = parseInt(number, 2);
     switch(operator){
         case "<<":
-            result = number << 1;
+            result = ConvertBase.bin2dec(number) << 1;
+            break;
+        case ">>":
+            result = ConvertBase.bin2dec(number) >> 1;
             break;
     }
-    console.log(result);
+    console.log(result.toString(2));
     
 }
