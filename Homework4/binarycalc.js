@@ -72,7 +72,7 @@ function toOp2(operator, number){
             result = ConvertBase.bin2dec(number) >> 1;
             break;
         case  "~":
-            result 
+            result = ~(ConvertBase.bin2dec(number));
     }
     console.log(result.toString(2));
     
