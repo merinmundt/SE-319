@@ -57,8 +57,16 @@ function toOp(operator, number1, number2){
         case "%":
             result = number1 / number2;
             break;
+        
+        case "&":
+            result = number1 & number2;
+            break;
+        
+        case "|":
+            result = number1 | number2;
+            break;
     }
-    console.log(result);
+    console.log(result.toString(2));
 }
 
 function toOp2(operator, number){
