@@ -80,8 +80,16 @@ function toOp2(operator, number){
             result = ConvertBase.bin2dec(number) >> 1;
             break;
         case  "~":
-            result = ~(ConvertBase.bin2dec(number));
+            result = inverse(number);
     }
     console.log(result.toString(2));
     
+}
+
+function inverse(number){
+    var result = "";
+    for(var i = 0; i < number.length; i++){
+        result +=  number[i] === "0" ? "1" : "0";
+    }
+    return result;
 }

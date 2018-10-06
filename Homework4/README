@@ -1,0 +1,16 @@
+In order to compile my program, you must have the readline-sync 
+installed along with node.
+
+Within the terminal, inorder to run my program, type 
+"node binarycalc.js". This should run my program and it will 
+proceed to ask you a series of questions. 
+
+First question will be for the first number. Must be a binary number.
+The next question will be for the operator. if the operater is >>
+or << then it will give you the answer without asking for the second
+number. If a different operator, then it will proceed to ask you for 
+the second number. 
+
+After each question, press enter. Your operation will print out the 
+answer in binary form in the terminal. 
+
