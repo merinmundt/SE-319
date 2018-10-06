@@ -5,7 +5,7 @@ var ConvertBase = function (num) {
         from : function (baseFrom) {
             return {
                 to : function (baseTo) {
-                    return parseInt(num, baseFrom).toString(baseTo);
+                    return parseInt(parseInt(num, baseFrom).toString(baseTo));
                 }
             };
         }
@@ -21,8 +21,12 @@ main();
 
 function main(){
     var fNum1 = rs.question('1st Number: ');
-    var fNum2 = rs.question('2nd Number: ');
     var action = rs.question('Enter the action{+,-,*,/,%}');
+    if(action == ("<<" || ">>" || "&" || "~" || "|")){
+        toOp2(action, fNum1);
+    }
+    var fNum2 = rs.question('2nd Number: ');
+    
 
     var int1 = toInt(fNum1);
     var int2 = toInt(fNum2);
@@ -40,6 +44,30 @@ function toOp(operator, number1, number2){
         case "+":
             result = number1 + number2;
             break;
+
+        case "-":
+            result = number1 - number2;
+            break;
+
+        case "*":
+            result = number1 * number2;
+            break;
+        
+        case "%":
+            result = number1 / number2;
+            break;
     }
     console.log(result);
+}
+
+function toOp2(operator, number){
+    var result;
+    //var num = parseInt(number, 2);
+    switch(operator){
+        case "<<":
+            result = number << 1;
+            break;
+    }
+    console.log(result);
+    
 }
